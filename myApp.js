@@ -9,14 +9,10 @@ app.get('/', (req,res) => {
 })
 
 app.get("/json", (req,res) => {
-    console.log(process.env.MESSAGE_STYLE)
+    
     res.send(process.env.MESSAGE_STYLE)
     res.json((process.env.MESSAGE_STYLE == "uppercase") ? {message: "HELLO JSON"} : {message: "Hello json"})
 })
-
-
-
-
 
 
 
