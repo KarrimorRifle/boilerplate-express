@@ -23,7 +23,7 @@ app.get('/now',(req,res,next) => {
     next();
 },
 (req,res) =>{
-    req.json({time: req.time})
+    res.json({time: req.time})
 })
 
  module.exports = app;
