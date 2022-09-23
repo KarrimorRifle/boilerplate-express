@@ -4,6 +4,11 @@ console.log("Hello World");
 app.use(express.static(__dirname + "/public"))
 require('dotenv').config()
 
+const getTime = (req,res,next) => {
+    req.time = Date().toString();
+    next();
+}
+
 app.use('/', (req,res,next) => {
     console.log(`${req.method} ${req.path} - ${req.ip}`);
     next()
@@ -17,8 +22,7 @@ app.get("/json", (req,res) => {
     res.json((process.env.MESSAGE_STYLE == "uppercase") ? {message: "HELLO JSON"} : {message: "Hello json"})
 })
 
-app.get('/now',(req,res) =>{
-    req.time = Date().toString()
+app.get('/now',getTime, (req,res) =>{
     req.json({time: req.time})
 })
 
